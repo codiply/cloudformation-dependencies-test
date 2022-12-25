@@ -1,2 +1,3 @@
-aws-cdk-lib==2.25.0
+aws-cdk-lib==2.56.1
+aws-cdk.aws-lambda-python-alpha==2.56.1a0
 constructs>=10.0.0,<11.0.0

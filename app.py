@@ -3,14 +3,15 @@ import os
 
 import aws_cdk as cdk
 
-from stacks.timestream_stack import TimestreamStack
+from stacks.core_stack import CoreStack
 
 
 prefix = "cfn-deps-test"
 
 app = cdk.App()
-TimestreamStack(app, 
-    f"{prefix}-timestream",
+
+core_stack = CoreStack(app, 
+    f"{prefix}-core",
     prefix=prefix)
 
 app.synth()
