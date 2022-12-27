@@ -1,12 +1,10 @@
 from aws_cdk import (
     Stack,
-    custom_resources,
 )
 import aws_cdk as cdk
 from constructs import Construct
 
-class NoDependenciesStack(Stack):
-
+class WithDependenciesStack(Stack):
     def __init__(
         self, 
         scope: Construct, 
@@ -18,15 +16,22 @@ class NoDependenciesStack(Stack):
         
         super().__init__(scope, construct_id, **kwargs)
 
+        previous_resource = None
+
         for i in range(1, number_of_resources+1):
-          cdk.CustomResource(
+          resource = cdk.CustomResource(
             self,
             f"custom-resource-{i}",
             service_token=resource_provider_service_token,
             properties={
               'ResourceName': f"resource-{i}",
               'ResourceVersion': version,
-              'Approach': 'no_dependencies',
+              'Approach': 'with_dependencies',
             }
           )
+          
+          if previous_resource:
+            resource.node.add_dependency(previous_resource)
+
+          previous_resource = resource
 
