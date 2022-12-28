@@ -1,5 +1,7 @@
 # CloudFormation dependencies test
 
+See [this blog post](https://deepdive.codiply.com/cloudformation-resource-creation-and-deletion-order) for more details on this github project.
+
 ## Welcome to your CDK Python project!
 
 This is a blank project for CDK development with Python.
